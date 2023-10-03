@@ -9,12 +9,12 @@ abstract class Task(
 
     abstract fun runTask(remoteHistory: RemoteHistoryService)
 
-    fun finish() {
+    protected fun finish() {
         status = TaskStatus.Finished
         TaskManager.instance.taskFinished(this)
     }
 
-    fun reschedule(timestamp: Long) {
+    protected fun reschedule(timestamp: Long) {
         schedule = timestamp
         TaskManager.instance.taskFinished(this)
         TaskManager.instance.skeduleTask(this)
